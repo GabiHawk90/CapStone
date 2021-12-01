@@ -16,7 +16,7 @@
 #include"Adafruit_GFX.h"
 #include"Adafruit_SSD1306.h"
 #include "SPI.h"
-#include "Ethernet.h"
+// #include "ethernet.h"
 #include "mac.h"
 #include "hue.h"
 #include "wemo.h"
@@ -193,9 +193,9 @@ void clickTwo() {
 void printIP() {
   Serial.printf("My IP address: ");
   for (byte thisByte = 0; thisByte < 3; thisByte++) {
-    Serial.printf("%i.", Ethernet.localIP()[thisByte]);
+    Serial.printf("%i.", ethernet.localIP()[thisByte]);
   }
-  Serial.printf("%i\n", Ethernet.localIP()[3]);
+  Serial.printf("%i\n", ethernet.localIP()[3]);
 }
 void startObjects() {
   if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
@@ -212,10 +212,10 @@ void startObjects() {
   digitalWrite(10, HIGH);
   pinMode(4, OUTPUT);
   digitalWrite(4, HIGH);
-  Ethernet.begin(mac);
+  ethernet.begin(mac);
   delay(200);
   printIP();
-  Serial.printf("LinkStatus: %i  \n", Ethernet.linkStatus());
+  Serial.printf("LinkStatus: %i  \n", ethernet.linkStatus());
 
 }
 void setHues(int color, bool hueOn) {
